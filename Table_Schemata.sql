@@ -1,0 +1,36 @@
+Drop table employees;
+Drop table departments;
+Drop table dept_emp;
+Drop table dept_manager;
+Drop table salaries;
+Drop table titles;
+
+
+create table employees (emp_no int not null primary key, emp_title_id varchar(20),birth_date date,first_name varchar(30),
+						  last_name varchar(30),gender varchar(20),hire_date date );
+select * from employees;
+
+
+create table departments( dept_no VARCHAR(30)  NOT NULL primary key,dept_name varchar(30));
+select * from departments;
+
+
+create table dept_emp (emp_no int NOT NULL,dept_no varchar(30) not NULL,
+    foreign key(emp_no) REFERENCES employees(emp_no),foreign key (dept_no) REFERENCES departments(dept_no));
+select * from dept_emp;
+
+
+
+create table dept_manager(dept_no varchar(30) not null,emp_no int not NULL,
+						    foreign key (emp_no) REFERENCES employees(emp_no),
+						   foreign key (dept_no) REFERENCES departments(dept_no));
+select * from dept_manager;
+
+
+create table salaries(emp_no int not NULL,salary integer,
+					   foreign key (emp_no) REFERENCES employees(emp_no));
+select * from salaries;
+
+
+create table titles (title_id varchar(10) not null primary key,title varchar(30));
+select * from titles ;
